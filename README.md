@@ -39,7 +39,7 @@ To get started with this project, follow these steps:
 1. Clone the repository to your local machine:
 
    ```shell
-
+   git clone git@github.com:Ehteesham/Naruto-Ninjutsu-Game-Hand-Sign-Recognition.git
    ```
 
 2. Install the required Python libraries using pip:
