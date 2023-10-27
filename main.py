@@ -5,6 +5,7 @@ import pygame
 from mechanism.fighter import Fighter
 from mechanism.naruto_detection import NarutoDetection
 
+
 # function for drawing a text
 def drwa_text(text, font, text_colour, x, y):
     img = font.render(text, True, text_colour)
@@ -25,6 +26,7 @@ def health_bar(health, x, y):
     pygame.draw.rect(screen, YELLOW, (x, y, 400 * ratio, 30))
 
 
+# Class for using multiprocessing for hand sign Detection
 class NarutoDetectionProcess(multiprocessing.Process):
     def __init__(self, result_queue):
         super().__init__()
@@ -32,7 +34,6 @@ class NarutoDetectionProcess(multiprocessing.Process):
 
     def run(self):
         naruto_detector = NarutoDetection(self.result_queue)
-        naruto_detector.capture_frames()
 
 
 if __name__ == "__main__":
@@ -79,7 +80,7 @@ if __name__ == "__main__":
 
     # load spritesheets
     naruto_sheet = pygame.image.load(
-        "assets/images/naruto/naruto-sperits-2.png"
+        "assets/images/naruto/naruto-sperits.png"
     ).convert_alpha()
     sasuke_sheet = pygame.image.load(
         "assets/images/sasuke/Untitled-Sasuke.png"
@@ -120,7 +121,9 @@ if __name__ == "__main__":
             fighter_1.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen, fighter_2, result)
         else:
             # display the count timer
-            drwa_text(str(intro_count), count_font, RED, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3)
+            drwa_text(
+                str(intro_count), count_font, RED, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3
+            )
             # update count timer
             if (pygame.time.get_ticks() - last_count_update) >= 1000:
                 intro_count -= 1
@@ -139,6 +142,7 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 run = False
                 naruto_detection_process.terminate()
+                
 
         # update display
         pygame.display.update()

@@ -133,7 +133,14 @@ class Fighter:
         self.image = self.animation_list[self.action][self.frame_index]
         # check if enough time has passed since the last update
         if pygame.time.get_ticks() - self.update_time > animation_cooldown:
-            self.frame_index += 1
+            if (
+                self.action == 4 and self.frame_index == 8
+            ):  # For Atack 2 hold the frame for a certain time
+                self.frame_index = 8
+                pygame.time.delay(5000)
+                self.frame_index += 1
+            else:
+                self.frame_index += 1
             self.update_time = pygame.time.get_ticks()
             # for moving the rectangle setting update
             if self.frame_index == 9 and self.action == 3:
