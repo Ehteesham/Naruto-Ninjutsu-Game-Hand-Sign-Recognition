@@ -38,3 +38,4 @@ typing_extensions==4.8.0
 tzdata==2023.3
 ultralytics==8.0.194
 urllib3==2.0.6
+SpeechRecognition==3.10.0
